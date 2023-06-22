@@ -55,5 +55,40 @@ draw_grid(ai_canvas, 10, 10, 20)
 status_label = tk.Label(status_frame, text="Preparing Game", bg="lightgray", font=("Arial", 16))
 status_label.pack(pady=20)
 
+
+class Ship:
+    def __init__(self, size, x, y, orientation):
+        self.size = size
+        self.x = x
+        self.y = y
+        self.orientation = orientation  # 'horizontal' or 'vertical'
+        self.placed = False
+
+    def draw(self, canvas, cell_size):
+        if self.placed:
+            color = "darkgray"
+        else:
+            color = "green"  # Will need logic to check if placement is valid
+
+        if self.orientation == 'horizontal':
+            x1 = self.x * cell_size
+            y1 = self.y * cell_size
+            x2 = x1 + (self.size * cell_size)
+            y2 = y1 + cell_size
+        else:  # vertical
+            x1 = self.x * cell_size
+            y1 = self.y * cell_size
+            x2 = x1 + cell_size
+            y2 = y1 + (self.size * cell_size)
+
+        canvas.create_rectangle(x1, y1, x2, y2, fill=color)
+
+
+# Create a ship
+my_ship = Ship(size=3, x=2, y=2, orientation='horizontal')
+
+# Draw the ship on the player's canvas
+my_ship.draw(player_canvas, 20)
+
 # Start the main loop
 root.mainloop()
