@@ -11,12 +11,14 @@ License: MIT License
 
 import tkinter as tk
 
+
 # Function to draw a grid on a canvas
 def draw_grid(canvas, rows, cols, cell_size):
     for i in range(rows + 1):
         canvas.create_line(i * cell_size, 0, i * cell_size, cell_size * rows)
     for j in range(cols + 1):
         canvas.create_line(0, j * cell_size, cell_size * cols, j * cell_size)
+
 
 # Create the main window
 root = tk.Tk()
