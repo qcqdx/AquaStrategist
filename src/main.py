@@ -12,12 +12,16 @@ License: MIT License
 import tkinter as tk
 
 
-# Function to draw a grid on a canvas
 def draw_grid(canvas, rows, cols, cell_size):
+    letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     for i in range(rows + 1):
-        canvas.create_line(i * cell_size, 0, i * cell_size, cell_size * rows)
+        canvas.create_line((i + 1) * cell_size, cell_size, (i + 1) * cell_size, cell_size * (rows + 1))
+        if i < rows:
+            canvas.create_text((i + 1.5) * cell_size, cell_size / 2, text=letters[i], anchor="center")
     for j in range(cols + 1):
-        canvas.create_line(0, j * cell_size, cell_size * cols, j * cell_size)
+        canvas.create_line(cell_size, (j + 1) * cell_size, cell_size * (cols + 1), (j + 1) * cell_size)
+        if j < cols:
+            canvas.create_text(cell_size / 2, (j + 1.5) * cell_size, text=str(j + 1), anchor="center")
 
 
 # Create the main window
@@ -36,8 +40,8 @@ ai_frame.pack(side="left", padx=20, pady=20)
 status_frame.pack(side="bottom", padx=20, pady=20, fill="x")
 
 # Create canvases within the respective frames for the game boards
-player_canvas = tk.Canvas(player_frame, width=200, height=200, bg="white")
-ai_canvas = tk.Canvas(ai_frame, width=200, height=200, bg="white")
+player_canvas = tk.Canvas(player_frame, width=220, height=220, bg="white")
+ai_canvas = tk.Canvas(ai_frame, width=220, height=220, bg="white")
 
 # Place the canvases within the frames
 player_canvas.pack(padx=20, pady=20)
